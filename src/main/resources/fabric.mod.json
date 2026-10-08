@@ -13,7 +13,7 @@
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/bow3d/icon.png",
-	"environment": "*",
+	"environment": "client",
 	"entrypoints": {
 		"main": [
 			"atom.bow3d.ThreeDBow"
