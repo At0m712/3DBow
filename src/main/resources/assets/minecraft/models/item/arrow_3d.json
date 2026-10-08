@@ -1,0 +1,831 @@
+{
+    "credit":  "Made with Blockbench, extracted for 3D reload animation",
+    "textures":  {
+                     "arrow_shaft":  "bow3d:item/arrow_shaft",
+                     "arrow_tip":  "bow3d:item/arrow_tip",
+                     "arrow_fletching":  "bow3d:item/arrow_fletching",
+                     "particle":  "bow3d:item/arrow_shaft"
+                 },
+    "elements":  [
+                     {
+                         "from":  [
+                                      2.875,
+                                      5.56203,
+                                      8.5
+                                  ],
+                         "to":  [
+                                    3.175,
+                                    14.56203,
+                                    8.8
+                                ],
+                         "rotation":  {
+                                          "x":  12,
+                                          "y":  0,
+                                          "z":  90,
+                                          "origin":  [
+                                                         3.01852,
+                                                         10.49352,
+                                                         8.65
+                                                     ]
+                                      },
+                         "color":  2,
+                         "faces":  {
+                                       "north":  {
+                                                     "uv":  [
+                                                                0,
+                                                                0,
+                                                                1,
+                                                                9
+                                                            ],
+                                                     "texture":  "#arrow_shaft"
+                                                 },
+                                       "east":  {
+                                                    "uv":  [
+                                                               1,
+                                                               0,
+                                                               2,
+                                                               9
+                                                           ],
+                                                    "texture":  "#arrow_shaft"
+                                                },
+                                       "south":  {
+                                                     "uv":  [
+                                                                2,
+                                                                0,
+                                                                3,
+                                                                9
+                                                            ],
+                                                     "texture":  "#arrow_shaft"
+                                                 },
+                                       "west":  {
+                                                    "uv":  [
+                                                               3,
+                                                               0,
+                                                               4,
+                                                               9
+                                                           ],
+                                                    "texture":  "#arrow_shaft"
+                                                },
+                                       "up":  {
+                                                  "uv":  [
+                                                             4,
+                                                             0,
+                                                             5,
+                                                             1
+                                                         ],
+                                                  "texture":  "#arrow_shaft"
+                                              },
+                                       "down":  {
+                                                    "uv":  [
+                                                               4,
+                                                               1,
+                                                               5,
+                                                               2
+                                                           ],
+                                                    "texture":  "#arrow_shaft"
+                                                }
+                                   }
+                     },
+                     {
+                         "from":  [
+                                      3.175,
+                                      13.76203,
+                                      8.5
+                                  ],
+                         "to":  [
+                                    3.375,
+                                    14.56203,
+                                    8.8
+                                ],
+                         "rotation":  {
+                                          "x":  12,
+                                          "y":  0,
+                                          "z":  90,
+                                          "origin":  [
+                                                         3.01852,
+                                                         10.49352,
+                                                         8.65
+                                                     ]
+                                      },
+                         "color":  7,
+                         "faces":  {
+                                       "north":  {
+                                                     "uv":  [
+                                                                1.8,
+                                                                1.5,
+                                                                2,
+                                                                2.3
+                                                            ],
+                                                     "texture":  "#arrow_tip",
+                                                     "tintindex":  0
+                                                 },
+                                       "east":  {
+                                                    "uv":  [
+                                                               1.7,
+                                                               1.5,
+                                                               2,
+                                                               2.3
+                                                           ],
+                                                    "texture":  "#arrow_tip",
+                                                    "tintindex":  0
+                                                },
+                                       "south":  {
+                                                     "uv":  [
+                                                                0,
+                                                                1.5,
+                                                                0.2,
+                                                                2.3
+                                                            ],
+                                                     "texture":  "#arrow_tip",
+                                                     "tintindex":  0
+                                                 },
+                                       "west":  {
+                                                    "uv":  [
+                                                               0,
+                                                               1.5,
+                                                               0.3,
+                                                               2.3
+                                                           ],
+                                                    "texture":  "#arrow_tip",
+                                                    "tintindex":  0
+                                                },
+                                       "up":  {
+                                                  "uv":  [
+                                                             0,
+                                                             0,
+                                                             0.2,
+                                                             0.3
+                                                         ],
+                                                  "texture":  "#arrow_tip",
+                                                  "tintindex":  0
+                                              },
+                                       "down":  {
+                                                    "uv":  [
+                                                               0,
+                                                               1.7,
+                                                               0.2,
+                                                               2
+                                                           ],
+                                                    "texture":  "#arrow_tip",
+                                                    "tintindex":  0
+                                                }
+                                   }
+                     },
+                     {
+                         "from":  [
+                                      2.675,
+                                      13.76203,
+                                      8.5
+                                  ],
+                         "to":  [
+                                    2.875,
+                                    14.56203,
+                                    8.8
+                                ],
+                         "rotation":  {
+                                          "x":  12,
+                                          "y":  0,
+                                          "z":  90,
+                                          "origin":  [
+                                                         3.01852,
+                                                         10.49352,
+                                                         8.65
+                                                     ]
+                                      },
+                         "color":  9,
+                         "faces":  {
+                                       "north":  {
+                                                     "uv":  [
+                                                                1.8,
+                                                                1.5,
+                                                                2,
+                                                                2.3
+                                                            ],
+                                                     "texture":  "#arrow_tip",
+                                                     "tintindex":  0
+                                                 },
+                                       "east":  {
+                                                    "uv":  [
+                                                               1.7,
+                                                               1.5,
+                                                               2,
+                                                               2.3
+                                                           ],
+                                                    "texture":  "#arrow_tip",
+                                                    "tintindex":  0
+                                                },
+                                       "south":  {
+                                                     "uv":  [
+                                                                0,
+                                                                1.5,
+                                                                0.2,
+                                                                2.3
+                                                            ],
+                                                     "texture":  "#arrow_tip",
+                                                     "tintindex":  0
+                                                 },
+                                       "west":  {
+                                                    "uv":  [
+                                                               0,
+                                                               1.5,
+                                                               0.3,
+                                                               2.3
+                                                           ],
+                                                    "texture":  "#arrow_tip",
+                                                    "tintindex":  0
+                                                },
+                                       "up":  {
+                                                  "uv":  [
+                                                             0,
+                                                             0,
+                                                             0.2,
+                                                             0.3
+                                                         ],
+                                                  "texture":  "#arrow_tip",
+                                                  "tintindex":  0
+                                              },
+                                       "down":  {
+                                                    "uv":  [
+                                                               0,
+                                                               1.7,
+                                                               0.2,
+                                                               2
+                                                           ],
+                                                    "texture":  "#arrow_tip",
+                                                    "tintindex":  0
+                                                }
+                                   }
+                     },
+                     {
+                         "from":  [
+                                      2.875,
+                                      13.76203,
+                                      8.3
+                                  ],
+                         "to":  [
+                                    3.175,
+                                    14.56203,
+                                    8.5
+                                ],
+                         "rotation":  {
+                                          "x":  12,
+                                          "y":  0,
+                                          "z":  90,
+                                          "origin":  [
+                                                         3.01852,
+                                                         10.49352,
+                                                         8.65
+                                                     ]
+                                      },
+                         "color":  7,
+                         "faces":  {
+                                       "north":  {
+                                                     "uv":  [
+                                                                1.7,
+                                                                1.5,
+                                                                2,
+                                                                2.3
+                                                            ],
+                                                     "texture":  "#arrow_tip",
+                                                     "tintindex":  0
+                                                 },
+                                       "east":  {
+                                                    "uv":  [
+                                                               1.8,
+                                                               1.5,
+                                                               2,
+                                                               2.3
+                                                           ],
+                                                    "texture":  "#arrow_tip",
+                                                    "tintindex":  0
+                                                },
+                                       "south":  {
+                                                     "uv":  [
+                                                                0,
+                                                                1.5,
+                                                                0.3,
+                                                                2.3
+                                                            ],
+                                                     "texture":  "#arrow_tip",
+                                                     "tintindex":  0
+                                                 },
+                                       "west":  {
+                                                    "uv":  [
+                                                               0,
+                                                               1.5,
+                                                               0.2,
+                                                               2.3
+                                                           ],
+                                                    "texture":  "#arrow_tip",
+                                                    "tintindex":  0
+                                                },
+                                       "up":  {
+                                                  "uv":  [
+                                                             0,
+                                                             0,
+                                                             0.3,
+                                                             0.2
+                                                         ],
+                                                  "texture":  "#arrow_tip",
+                                                  "tintindex":  0
+                                              },
+                                       "down":  {
+                                                    "uv":  [
+                                                               0,
+                                                               1.8,
+                                                               0.3,
+                                                               2
+                                                           ],
+                                                    "texture":  "#arrow_tip",
+                                                    "tintindex":  0
+                                                }
+                                   }
+                     },
+                     {
+                         "from":  [
+                                      2.875,
+                                      13.76203,
+                                      8.8
+                                  ],
+                         "to":  [
+                                    3.175,
+                                    14.56203,
+                                    9
+                                ],
+                         "rotation":  {
+                                          "x":  12,
+                                          "y":  0,
+                                          "z":  90,
+                                          "origin":  [
+                                                         3.01852,
+                                                         10.49352,
+                                                         8.65
+                                                     ]
+                                      },
+                         "color":  8,
+                         "faces":  {
+                                       "north":  {
+                                                     "uv":  [
+                                                                1.7,
+                                                                1.5,
+                                                                2,
+                                                                2.3
+                                                            ],
+                                                     "texture":  "#arrow_tip",
+                                                     "tintindex":  0
+                                                 },
+                                       "east":  {
+                                                    "uv":  [
+                                                               1.8,
+                                                               1.5,
+                                                               2,
+                                                               2.3
+                                                           ],
+                                                    "texture":  "#arrow_tip",
+                                                    "tintindex":  0
+                                                },
+                                       "south":  {
+                                                     "uv":  [
+                                                                0,
+                                                                1.5,
+                                                                0.3,
+                                                                2.3
+                                                            ],
+                                                     "texture":  "#arrow_tip",
+                                                     "tintindex":  0
+                                                 },
+                                       "west":  {
+                                                    "uv":  [
+                                                               0,
+                                                               1.5,
+                                                               0.2,
+                                                               2.3
+                                                           ],
+                                                    "texture":  "#arrow_tip",
+                                                    "tintindex":  0
+                                                },
+                                       "up":  {
+                                                  "uv":  [
+                                                             0,
+                                                             0,
+                                                             0.3,
+                                                             0.2
+                                                         ],
+                                                  "texture":  "#arrow_tip",
+                                                  "tintindex":  0
+                                              },
+                                       "down":  {
+                                                    "uv":  [
+                                                               0,
+                                                               1.8,
+                                                               0.3,
+                                                               2
+                                                           ],
+                                                    "texture":  "#arrow_tip",
+                                                    "tintindex":  0
+                                                }
+                                   }
+                     },
+                     {
+                         "from":  [
+                                      2.875,
+                                      14.56203,
+                                      8.5
+                                  ],
+                         "to":  [
+                                    3.175,
+                                    15.06203,
+                                    8.8
+                                ],
+                         "rotation":  {
+                                          "x":  12,
+                                          "y":  0,
+                                          "z":  90,
+                                          "origin":  [
+                                                         3.01852,
+                                                         10.49352,
+                                                         8.65
+                                                     ]
+                                      },
+                         "color":  5,
+                         "faces":  {
+                                       "north":  {
+                                                     "uv":  [
+                                                                1.7,
+                                                                1.5,
+                                                                2,
+                                                                2
+                                                            ],
+                                                     "texture":  "#arrow_tip",
+                                                     "tintindex":  0
+                                                 },
+                                       "east":  {
+                                                    "uv":  [
+                                                               1.7,
+                                                               1.5,
+                                                               2,
+                                                               2
+                                                           ],
+                                                    "texture":  "#arrow_tip",
+                                                    "tintindex":  0
+                                                },
+                                       "south":  {
+                                                     "uv":  [
+                                                                0,
+                                                                1.5,
+                                                                0.3,
+                                                                2
+                                                            ],
+                                                     "texture":  "#arrow_tip",
+                                                     "tintindex":  0
+                                                 },
+                                       "west":  {
+                                                    "uv":  [
+                                                               0,
+                                                               1.5,
+                                                               0.3,
+                                                               2
+                                                           ],
+                                                    "texture":  "#arrow_tip",
+                                                    "tintindex":  0
+                                                },
+                                       "up":  {
+                                                  "uv":  [
+                                                             0,
+                                                             0,
+                                                             0.3,
+                                                             0.3
+                                                         ],
+                                                  "texture":  "#arrow_tip",
+                                                  "tintindex":  0
+                                              },
+                                       "down":  {
+                                                    "uv":  [
+                                                               0,
+                                                               1.7,
+                                                               0.3,
+                                                               2
+                                                           ],
+                                                    "texture":  "#arrow_tip",
+                                                    "tintindex":  0
+                                                }
+                                   }
+                     },
+                     {
+                         "from":  [
+                                      3.16203,
+                                      5.675,
+                                      8.6
+                                  ],
+                         "to":  [
+                                    3.46203,
+                                    6.675,
+                                    8.7
+                                ],
+                         "rotation":  {
+                                          "x":  12,
+                                          "y":  0,
+                                          "z":  90,
+                                          "origin":  [
+                                                         3.01852,
+                                                         10.49352,
+                                                         8.65
+                                                     ]
+                                      },
+                         "color":  6,
+                         "faces":  {
+                                       "north":  {
+                                                     "uv":  [
+                                                                0,
+                                                                0,
+                                                                1,
+                                                                1
+                                                            ],
+                                                     "texture":  "#arrow_fletching"
+                                                 },
+                                       "east":  {
+                                                    "uv":  [
+                                                               0,
+                                                               0,
+                                                               0,
+                                                               1
+                                                           ],
+                                                    "texture":  "#arrow_fletching"
+                                                },
+                                       "south":  {
+                                                     "uv":  [
+                                                                0,
+                                                                1,
+                                                                1,
+                                                                2
+                                                            ],
+                                                     "texture":  "#arrow_fletching"
+                                                 },
+                                       "west":  {
+                                                    "uv":  [
+                                                               0,
+                                                               0,
+                                                               0,
+                                                               1
+                                                           ],
+                                                    "texture":  "#arrow_fletching"
+                                                },
+                                       "up":  {
+                                                  "uv":  [
+                                                             0,
+                                                             0,
+                                                             1,
+                                                             0
+                                                         ],
+                                                  "texture":  "#arrow_fletching"
+                                              },
+                                       "down":  {
+                                                    "uv":  [
+                                                               0,
+                                                               0,
+                                                               1,
+                                                               0
+                                                           ],
+                                                    "texture":  "#arrow_fletching"
+                                                }
+                                   }
+                     },
+                     {
+                         "from":  [
+                                      2.575,
+                                      5.675,
+                                      8.6
+                                  ],
+                         "to":  [
+                                    2.875,
+                                    6.675,
+                                    8.7
+                                ],
+                         "rotation":  {
+                                          "x":  12,
+                                          "y":  0,
+                                          "z":  90,
+                                          "origin":  [
+                                                         3.01852,
+                                                         10.49352,
+                                                         8.65
+                                                     ]
+                                      },
+                         "color":  4,
+                         "faces":  {
+                                       "north":  {
+                                                     "uv":  [
+                                                                0,
+                                                                0,
+                                                                1,
+                                                                1
+                                                            ],
+                                                     "texture":  "#arrow_fletching"
+                                                 },
+                                       "east":  {
+                                                    "uv":  [
+                                                               0,
+                                                               0,
+                                                               0,
+                                                               1
+                                                           ],
+                                                    "texture":  "#arrow_fletching"
+                                                },
+                                       "south":  {
+                                                     "uv":  [
+                                                                0,
+                                                                1,
+                                                                1,
+                                                                2
+                                                            ],
+                                                     "texture":  "#arrow_fletching"
+                                                 },
+                                       "west":  {
+                                                    "uv":  [
+                                                               0,
+                                                               0,
+                                                               0,
+                                                               1
+                                                           ],
+                                                    "texture":  "#arrow_fletching"
+                                                },
+                                       "up":  {
+                                                  "uv":  [
+                                                             0,
+                                                             0,
+                                                             1,
+                                                             0
+                                                         ],
+                                                  "texture":  "#arrow_fletching"
+                                              },
+                                       "down":  {
+                                                    "uv":  [
+                                                               0,
+                                                               0,
+                                                               1,
+                                                               0
+                                                           ],
+                                                    "texture":  "#arrow_fletching"
+                                                }
+                                   }
+                     },
+                     {
+                         "from":  [
+                                      3.11852,
+                                      5.675,
+                                      8.60648
+                                  ],
+                         "to":  [
+                                    3.41852,
+                                    6.675,
+                                    8.70648
+                                ],
+                         "rotation":  {
+                                          "x":  90,
+                                          "y":  78,
+                                          "z":  180,
+                                          "origin":  [
+                                                         3.01852,
+                                                         10.49352,
+                                                         8.65
+                                                     ]
+                                      },
+                         "color":  9,
+                         "faces":  {
+                                       "north":  {
+                                                     "uv":  [
+                                                                0,
+                                                                0,
+                                                                1,
+                                                                1
+                                                            ],
+                                                     "texture":  "#arrow_fletching"
+                                                 },
+                                       "east":  {
+                                                    "uv":  [
+                                                               0,
+                                                               0,
+                                                               0,
+                                                               1
+                                                           ],
+                                                    "texture":  "#arrow_fletching"
+                                                },
+                                       "south":  {
+                                                     "uv":  [
+                                                                0,
+                                                                1,
+                                                                1,
+                                                                2
+                                                            ],
+                                                     "texture":  "#arrow_fletching"
+                                                 },
+                                       "west":  {
+                                                    "uv":  [
+                                                               0,
+                                                               0,
+                                                               0,
+                                                               1
+                                                           ],
+                                                    "texture":  "#arrow_fletching"
+                                                },
+                                       "up":  {
+                                                  "uv":  [
+                                                             0,
+                                                             0,
+                                                             1,
+                                                             0
+                                                         ],
+                                                  "texture":  "#arrow_fletching"
+                                              },
+                                       "down":  {
+                                                    "uv":  [
+                                                               0,
+                                                               0,
+                                                               1,
+                                                               0
+                                                           ],
+                                                    "texture":  "#arrow_fletching"
+                                                }
+                                   }
+                     },
+                     {
+                         "from":  [
+                                      2.61852,
+                                      5.675,
+                                      8.60648
+                                  ],
+                         "to":  [
+                                    2.91852,
+                                    6.675,
+                                    8.70648
+                                ],
+                         "rotation":  {
+                                          "x":  90,
+                                          "y":  78,
+                                          "z":  180,
+                                          "origin":  [
+                                                         3.01852,
+                                                         10.49352,
+                                                         8.65
+                                                     ]
+                                      },
+                         "color":  7,
+                         "faces":  {
+                                       "north":  {
+                                                     "uv":  [
+                                                                0,
+                                                                0,
+                                                                1,
+                                                                1
+                                                            ],
+                                                     "texture":  "#arrow_fletching"
+                                                 },
+                                       "east":  {
+                                                    "uv":  [
+                                                               0,
+                                                               0,
+                                                               0,
+                                                               1
+                                                           ],
+                                                    "texture":  "#arrow_fletching"
+                                                },
+                                       "south":  {
+                                                     "uv":  [
+                                                                0,
+                                                                1,
+                                                                1,
+                                                                2
+                                                            ],
+                                                     "texture":  "#arrow_fletching"
+                                                 },
+                                       "west":  {
+                                                    "uv":  [
+                                                               0,
+                                                               0,
+                                                               0,
+                                                               1
+                                                           ],
+                                                    "texture":  "#arrow_fletching"
+                                                },
+                                       "up":  {
+                                                  "uv":  [
+                                                             0,
+                                                             0,
+                                                             1,
+                                                             0
+                                                         ],
+                                                  "texture":  "#arrow_fletching"
+                                              },
+                                       "down":  {
+                                                    "uv":  [
+                                                               0,
+                                                               0,
+                                                               1,
+                                                               0
+                                                           ],
+                                                    "texture":  "#arrow_fletching"
+                                                }
+                                   }
+                     }
+                 ]
+}

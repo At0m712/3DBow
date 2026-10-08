@@ -1,0 +1,52 @@
+{
+  "bow_wood_creak": {
+    "subtitle": "subtitles.bow3d.bow_wood_creak",
+    "sounds": [
+      {
+        "name": "bow3d:wood_creak1",
+        "volume": 1.0,
+        "pitch": 1.0
+      },
+      {
+        "name": "bow3d:wood_creak2",
+        "volume": 1.0,
+        "pitch": 1.0
+      },
+      {
+        "name": "bow3d:wood_creak3",
+        "volume": 1.0,
+        "pitch": 1.0
+      },
+      {
+        "name": "bow3d:wood_creak4",
+        "volume": 1.0,
+        "pitch": 1.0
+      }
+    ]
+  },
+  "bow_string_stretch": {
+    "subtitle": "subtitles.bow3d.bow_string_stretch",
+    "sounds": [
+      {
+        "name": "bow3d:string_stretch1",
+        "volume": 1.0,
+        "pitch": 1.0
+      },
+      {
+        "name": "bow3d:string_stretch2",
+        "volume": 1.0,
+        "pitch": 1.0
+      },
+      {
+        "name": "bow3d:string_stretch3",
+        "volume": 1.0,
+        "pitch": 1.0
+      },
+      {
+        "name": "bow3d:string_stretch4",
+        "volume": 1.0,
+        "pitch": 1.0
+      }
+    ]
+  }
+}
