@@ -154,5 +154,16 @@ public abstract class FirstPersonHandsAndItemsRendererMixin {
 			lightCoords,
 			this.minecraft
 		);
+		atom.bow3d.client.CrossbowArmRenderer.renderCrossbowArms(
+			playerState,
+			state,
+			hand,
+			itemStack,
+			partialTicks,
+			poseStack,
+			submitNodeCollector,
+			lightCoords,
+			this.minecraft
+		);
 	}
 }
