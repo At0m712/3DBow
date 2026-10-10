@@ -15,8 +15,11 @@ public class FirstPersonHandsAndItemsMixin {
 	@Inject(method = "itemUsed", at = @At("HEAD"), cancellable = true)
 	private void bow3d$cancelBowItemUsed(InteractionHand hand, CallbackInfo ci) {
 		Minecraft mc = Minecraft.getInstance();
-		if (mc.player != null && mc.player.getItemInHand(hand).is(Items.BOW)) {
-			ci.cancel();
+		if (mc.player != null) {
+			net.minecraft.world.item.ItemStack held = mc.player.getItemInHand(hand);
+			if (held.is(Items.BOW) || held.is(Items.CROSSBOW)) {
+				ci.cancel();
+			}
 		}
 	}
 }

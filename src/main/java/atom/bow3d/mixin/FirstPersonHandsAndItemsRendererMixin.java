@@ -34,12 +34,25 @@ public abstract class FirstPersonHandsAndItemsRendererMixin {
 	)
 	private ItemUseAnimation cancelVanillaBowAnimation(ItemStack instance) {
 		ItemUseAnimation anim = instance.getUseAnimation();
-		if (anim == ItemUseAnimation.BOW) {
+		if (anim == ItemUseAnimation.BOW || anim == ItemUseAnimation.CROSSBOW) {
 			return ItemUseAnimation.NONE;
 		}
 		return anim;
 	}
 
+	@Redirect(
+		method = "submitArmWithItem",
+		at = @At(
+			value = "INVOKE",
+			target = "Lnet/minecraft/world/item/ItemStack;is(Ljava/lang/Object;)Z"
+		)
+	)
+	private boolean bow3d$skipVanillaCrossbowTransform(ItemStack stack, Object item) {
+		if (item == Items.CROSSBOW) {
+			return false; // Skip vanilla's hardcoded crossbow transform block
+		}
+		return stack.is((net.minecraft.world.item.Item) item);
+	}
 
 	@org.spongepowered.asm.mixin.injection.ModifyVariable(
 		method = "submitArmWithItem",
@@ -57,7 +70,7 @@ public abstract class FirstPersonHandsAndItemsRendererMixin {
 		float attack,
 		ItemStack itemStack
 	) {
-		if (itemStack.is(net.minecraft.world.item.Items.BOW)) {
+		if (itemStack.is(Items.BOW) || itemStack.is(Items.CROSSBOW)) {
 			net.minecraft.client.renderer.entity.state.AvatarRenderState avatar = playerState.avatarRenderState;
 			if (avatar != null && avatar.isUsingItem && state.useItemRemainingTicks > 0) {
 				return 0.0F;
