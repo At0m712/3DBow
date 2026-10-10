@@ -57,7 +57,7 @@ public class ItemFeatureRendererMixin {
 	)
 	private void bow3d$putBakedQuadUnshadedFire(VertexConsumer consumer, PoseStack.Pose pose, BakedQuad quad, QuadInstance instance) {
 		Identifier spriteName = quad.materialInfo().sprite().contents().name();
-		if (spriteName != null && spriteName.getPath().contains("fire")) {
+		if (bow3d$isBowFlame(spriteName)) {
 			Matrix4f matrix = pose.pose();
 			int light = 15728880; // Full bright (maximum block + sky light)
 			float nx = 0.0F;
@@ -78,11 +78,23 @@ public class ItemFeatureRendererMixin {
 		}
 	}
 
+	private static boolean bow3d$isBowFlame(Identifier name) {
+		if (name == null) {
+			return false;
+		}
+		return "bow3d".equals(name.getNamespace()) && name.getPath().contains("fire_0");
+	}
+
 	private static boolean bow3d$isGlintImmune(Identifier name) {
 		if (name == null) {
 			return false;
 		}
+		if ("bow3d".equals(name.getNamespace())) {
+			String path = name.getPath();
+			return path.contains("arrow") || path.contains("fire") || path.contains("firework");
+		}
 		String path = name.getPath();
-		return path.contains("arrow") || path.contains("fire") || path.contains("firework");
+		return path.equals("item/arrow") || path.equals("item/spectral_arrow")
+			|| path.equals("item/tipped_arrow_head") || path.equals("item/tipped_arrow_base");
 	}
 }
