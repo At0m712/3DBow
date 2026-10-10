@@ -52,29 +52,30 @@ public class CrossbowArmRenderer {
 		AvatarRenderer<?> avatarRenderer = minecraft.getEntityRenderDispatcher().getRenderer(avatarRenderState);
 		Identifier skinTexture = avatarRenderState.skin.body().texturePath();
 
-		// ==========================================
-		// 1. Bras gauche : tient l'arbalète par en-dessous (soutient le fût)
-		// ==========================================
+		// =========================================================================
+		// 1. Bras gauche : arrive de HAUT À GAUCHE et finit précisément sous le fût
+		// =========================================================================
 		poseStack.pushPose();
 		float pushProgress = isUsing ? (pull * pull * (3.0F - 2.0F * pull)) : 0.0F;
-		float leftX = Mth.lerp(pushProgress, -0.38F, -0.395F);
-		float leftY = Mth.lerp(pushProgress, -0.12F, -0.11F);
-		float leftZ = Mth.lerp(pushProgress, -0.30F, -0.32F);
-		float leftRx = Mth.lerp(pushProgress, -38.0F, -36.0F);
-		float leftRy = Mth.lerp(pushProgress, 28.0F, 26.0F);
-		float leftRz = Mth.lerp(pushProgress, -25.0F, -22.0F);
+		float leftX = Mth.lerp(pushProgress, -0.520F, -0.535F);
+		float leftY = Mth.lerp(pushProgress, 0.020F, 0.035F);
+		float leftZ = Mth.lerp(pushProgress, -0.420F, -0.440F);
+		float leftRx = Mth.lerp(pushProgress, -44.0F, -42.0F);
+		float leftRy = Mth.lerp(pushProgress, 22.0F, 20.0F);
+		float leftRz = Mth.lerp(pushProgress, -40.0F, -36.0F);
 
 		poseStack.translate(leftX, leftY, leftZ);
 		poseStack.rotateDegrees(Axis.XP, leftRx);
 		poseStack.rotateDegrees(Axis.YP, leftRy);
 		poseStack.rotateDegrees(Axis.ZP, leftRz);
+		// Décalage pour aligner le creux de la paume directement sous l'arbalète
 		poseStack.translate(-0.4308F, -0.6785F, 0.0F);
 		avatarRenderer.renderLeftHand(poseStack, submitNodeCollector, lightCoords, skinTexture, avatarRenderState.showLeftSleeve);
 		poseStack.popPose();
 
-		// ==========================================
-		// 2. Bras droit : tient la flèche, la place, et tire la corde
-		// ==========================================
+		// =========================================================================
+		// 2. Bras droit : positionné AU-DESSUS sur le rail (pose flèche & tire corde)
+		// =========================================================================
 		poseStack.pushPose();
 		float targetX;
 		float targetY;
@@ -85,42 +86,42 @@ public class CrossbowArmRenderer {
 
 		if (isUsing) {
 			if (pull < 0.28F) {
-				// Phase 1 : tient la flèche et la pose sur le rail de guidage
+				// Phase 1 : la main droite vient d'au-dessus avec la flèche et la dépose sur le rail
 				float p = pull / 0.28F;
 				float ease = p * p * (3.0F - 2.0F * p);
-				targetX = Mth.lerp(ease, 0.04F, -0.16F);
-				targetY = Mth.lerp(ease, 0.05F, -0.02F);
-				targetZ = Mth.lerp(ease, -0.10F, -0.20F);
-				rx = Mth.lerp(ease, -42.0F, -26.0F);
-				ry = Mth.lerp(ease, -24.0F, -34.0F);
-				rz = Mth.lerp(ease, 34.0F, 40.0F);
+				targetX = Mth.lerp(ease, 0.06F, -0.18F);
+				targetY = Mth.lerp(ease, 0.18F, 0.08F);
+				targetZ = Mth.lerp(ease, -0.12F, -0.22F);
+				rx = Mth.lerp(ease, -35.0F, -25.0F);
+				ry = Mth.lerp(ease, -20.0F, -32.0F);
+				rz = Mth.lerp(ease, 32.0F, 38.0F);
 			} else {
-				// Phase 2 : attrape la corde et la tire fermement vers l'arrière jusqu'à la noix
+				// Phase 2 : la main droite attrape la corde sur le dessus du rail et la tire en arrière
 				float p = (pull - 0.28F) / 0.72F;
 				float ease = p * p * (3.0F - 2.0F * p);
-				targetX = Mth.lerp(ease, -0.16F, -0.20F);
-				targetY = Mth.lerp(ease, -0.02F, -0.07F);
-				targetZ = Mth.lerp(ease, -0.20F, 0.16F);
-				rx = Mth.lerp(ease, -26.0F, -20.0F);
-				ry = Mth.lerp(ease, -34.0F, -36.0F);
-				rz = Mth.lerp(ease, 40.0F, 46.0F);
+				targetX = Mth.lerp(ease, -0.18F, -0.20F);
+				targetY = Mth.lerp(ease, 0.08F, 0.05F);
+				targetZ = Mth.lerp(ease, -0.22F, 0.15F);
+				rx = Mth.lerp(ease, -25.0F, -20.0F);
+				ry = Mth.lerp(ease, -32.0F, -35.0F);
+				rz = Mth.lerp(ease, 38.0F, 42.0F);
 			}
 		} else if (isCharged) {
-			// Arbalète chargée : la main droite tient la poignée / gâchette à l'arrière, prête à tirer
-			targetX = -0.16F;
-			targetY = -0.12F;
-			targetZ = 0.18F;
-			rx = -22.0F;
-			ry = -25.0F;
-			rz = 32.0F;
+			// Arbalète chargée : main droite sur la poignée arrière / détente, prête à tirer
+			targetX = -0.18F;
+			targetY = 0.04F;
+			targetZ = 0.15F;
+			rx = -20.0F;
+			ry = -28.0F;
+			rz = 35.0F;
 		} else {
 			// Au repos (non chargée) : main droite sur la poignée arrière
-			targetX = -0.16F;
-			targetY = -0.12F;
-			targetZ = 0.18F;
-			rx = -22.0F;
-			ry = -25.0F;
-			rz = 32.0F;
+			targetX = -0.18F;
+			targetY = 0.04F;
+			targetZ = 0.15F;
+			rx = -20.0F;
+			ry = -28.0F;
+			rz = 35.0F;
 		}
 
 		poseStack.translate(targetX, targetY, targetZ);
