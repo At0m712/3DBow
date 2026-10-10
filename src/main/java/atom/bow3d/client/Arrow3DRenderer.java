@@ -367,27 +367,11 @@ public class Arrow3DRenderer {
 		float maxZ = (cz + 2.85F) / 16.0F;
 		float minX = (cx - 0.85F) / 16.0F;
 		float maxX = (cx + 0.85F) / 16.0F;
-		float minY = (cy - 0.85F) / 16.0F;
-		float maxY = (cy + 0.85F) / 16.0F;
-		float midX = cx / 16.0F;
 		float midY = cy / 16.0F;
 
 		// Plane 1: parallel to XZ plane (facing +/- Y)
 		// Top of flame (V=0) is at maxZ; Base of flame (V=1) is at minZ.
 		addCrossedQuad(consumer, pose, minX, midY, maxZ, minX, midY, minZ, maxX, midY, minZ, maxX, midY, maxZ);
-
-		// Plane 2: parallel to YZ plane (facing +/- X)
-		addCrossedQuad(consumer, pose, midX, minY, maxZ, midX, minY, minZ, midX, maxY, minZ, midX, maxY, maxZ);
-
-		// Core 3D volume
-		float cMinX = (cx - 0.55F) / 16.0F;
-		float cMaxX = (cx + 0.55F) / 16.0F;
-		float cMinY = (cy - 0.55F) / 16.0F;
-		float cMaxY = (cy + 0.55F) / 16.0F;
-		float cMaxZ = (cz + 2.25F) / 16.0F;
-		float cMinZ = (cz - 0.25F) / 16.0F;
-		addCrossedQuad(consumer, pose, cMinX, cMinY, cMaxZ, cMinX, cMinY, cMinZ, cMaxX, cMaxY, cMinZ, cMaxX, cMaxY, cMaxZ);
-		addCrossedQuad(consumer, pose, cMinX, cMaxY, cMaxZ, cMinX, cMaxY, cMinZ, cMaxX, cMinY, cMinZ, cMaxX, cMinY, cMaxZ);
 	}
 
 	private static void addCrossedQuad(
