@@ -22,4 +22,20 @@ public class FirstPersonHandsAndItemsMixin {
 			}
 		}
 	}
+
+	@Inject(
+		method = "shouldInstantlyReplaceVisibleItem",
+		at = @At("HEAD"),
+		cancellable = true
+	)
+	private void bow3d$instantReplaceCrossbow(
+		net.minecraft.world.item.ItemStack currentlyVisibleItem,
+		net.minecraft.world.item.ItemStack expectedItem,
+		net.minecraft.client.player.LocalPlayer player,
+		org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable<Boolean> cir
+	) {
+		if (currentlyVisibleItem.is(Items.CROSSBOW) && expectedItem.is(Items.CROSSBOW)) {
+			cir.setReturnValue(true);
+		}
+	}
 }
