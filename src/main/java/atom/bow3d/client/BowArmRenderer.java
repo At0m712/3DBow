@@ -3,23 +3,20 @@ package atom.bow3d.client;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.player.AvatarRenderer;
-import net.minecraft.client.renderer.entity.state.AvatarRenderState;
-import net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState;
-import net.minecraft.client.renderer.state.level.PlayerRenderState;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.player.PlayerModelPart;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 public class BowArmRenderer {
 
 	public static void renderBowArms(
-		PlayerRenderState playerState,
-		FirstPersonHandsAndItemsRenderState state,
+		AbstractClientPlayer player,
 		InteractionHand hand,
 		ItemStack itemStack,
 		float partialTicks,
@@ -32,22 +29,20 @@ public class BowArmRenderer {
 			return;
 		}
 
-		AvatarRenderState avatarRenderState = playerState.avatarRenderState;
-		if (avatarRenderState == null || avatarRenderState.isInvisible) {
+		if (player == null || player.isInvisible()) {
 			return;
 		}
 
-		boolean isUsing = state.useItemRemainingTicks > 0 && (
-			(avatarRenderState.isUsingItem && (avatarRenderState.useItemHand == hand || avatarRenderState.useItemHand == null))
-			|| (minecraft.player != null && minecraft.player.isUsingItem())
-		);
+		boolean isUsing = player.isUsingItem() && player.getUseItemRemainingTicks() > 0 && player.getUsedItemHand() == hand;
 
-		int useDuration = (hand == InteractionHand.MAIN_HAND) ? state.mainHandUseDuration : state.offHandUseDuration;
-		float timeHeld = isUsing ? ((float) useDuration - (state.useItemRemainingTicks - partialTicks + 1.0F)) : 0.0F;
+		int useDuration = itemStack.getUseDuration(player);
+		float timeHeld = isUsing ? ((float) useDuration - (player.getUseItemRemainingTicks() - partialTicks + 1.0F)) : 0.0F;
 		float pull = isUsing ? Mth.clamp(timeHeld / 20.0F, 0.0F, 1.0F) : 0.0F;
 
-		AvatarRenderer<?> avatarRenderer = minecraft.getEntityRenderDispatcher().getRenderer(avatarRenderState);
-		Identifier skinTexture = avatarRenderState.skin.body().texturePath();
+		AvatarRenderer<?> avatarRenderer = (AvatarRenderer<?>) (Object) minecraft.getEntityRenderDispatcher().getRenderer(player);
+		Identifier skinTexture = player.getSkin().body().texturePath();
+		boolean showLeftSleeve = player.isModelPartShown(PlayerModelPart.LEFT_SLEEVE);
+		boolean showRightSleeve = player.isModelPartShown(PlayerModelPart.RIGHT_SLEEVE);
 
 		// 1. Bras gauche : tient l'arc par la poignée, tendant légèrement le bras vers l'avant lors du bandage
 		poseStack.pushPose();
@@ -57,16 +52,15 @@ public class BowArmRenderer {
 		float leftRz = Mth.lerp(pushProgress, -41.0F, -36.0F);
 
 		poseStack.translate(-0.535F, 0.038F, -0.445F);
-		poseStack.rotateDegrees(Axis.XP, leftRx);
-		poseStack.rotateDegrees(Axis.YP, leftRy);
-		poseStack.rotateDegrees(Axis.ZP, leftRz);
+		poseStack.mulPose(Axis.XP.rotationDegrees(leftRx));
+		poseStack.mulPose(Axis.YP.rotationDegrees(leftRy));
+		poseStack.mulPose(Axis.ZP.rotationDegrees(leftRz));
 		// Décalage pour aligner le centre de rotation sur la paume de la main gauche
 		poseStack.translate(-0.4308F, -0.6785F, 0.0F);
-		avatarRenderer.renderLeftHand(poseStack, submitNodeCollector, lightCoords, skinTexture, avatarRenderState.showLeftSleeve);
+		avatarRenderer.renderLeftHand(poseStack, submitNodeCollector, lightCoords, skinTexture, showLeftSleeve);
 		poseStack.popPose();
 
-		boolean isLocalPlayer = minecraft.player != null;
-		boolean hasArrows = isLocalPlayer && (!minecraft.player.getProjectile(itemStack).isEmpty() || minecraft.player.getAbilities().instabuild);
+		boolean hasArrows = !player.getProjectile(itemStack).isEmpty() || player.getAbilities().instabuild;
 
 		if (isUsing && BowShotTracker.isReloading()) {
 			BowShotTracker.cancelReload();
@@ -75,7 +69,7 @@ public class BowArmRenderer {
 		// Rendu de la flèche 3D extraite de bow.json pendant le rechargement (uniquement si le joueur n'est pas en train de bander l'arc)
 		if (hasArrows && !isUsing && BowShotTracker.isReloading()) {
 			float reloadProg = BowShotTracker.getReloadProgress();
-			int tintColor = new ArrowTintSource().calculate(itemStack, null, minecraft.player);
+			int tintColor = new ArrowTintSource().calculate(itemStack, null, player);
 			Arrow3DRenderer.renderReloadArrow(poseStack, submitNodeCollector, lightCoords, tintColor, reloadProg);
 		}
 
@@ -155,12 +149,12 @@ public class BowArmRenderer {
 		}
 
 		poseStack.translate(targetX, targetY, targetZ);
-		poseStack.rotateDegrees(Axis.XP, rx);
-		poseStack.rotateDegrees(Axis.YP, ry);
-		poseStack.rotateDegrees(Axis.ZP, rz);
+		poseStack.mulPose(Axis.XP.rotationDegrees(rx));
+		poseStack.mulPose(Axis.YP.rotationDegrees(ry));
+		poseStack.mulPose(Axis.ZP.rotationDegrees(rz));
 		// Décalage pour aligner le centre de rotation sur la paume de la main droite
 		poseStack.translate(0.4308F, -0.6785F, 0.0F);
-		avatarRenderer.renderRightHand(poseStack, submitNodeCollector, lightCoords, skinTexture, avatarRenderState.showRightSleeve);
+		avatarRenderer.renderRightHand(poseStack, submitNodeCollector, lightCoords, skinTexture, showRightSleeve);
 		poseStack.popPose();
 	}
 }

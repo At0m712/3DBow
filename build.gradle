@@ -90,8 +90,8 @@ publishing {
 			changelogType = "markdown"
 
 			minecraftVersionRange {
-				start = "26.3"
-				end = "26.3"
+				start = "26.2"
+				end = "26.2"
 			}
 
 			client = true
@@ -105,8 +105,8 @@ publishing {
 			accessToken = providers.environmentVariable("MODRINTH_TOKEN")
 
 			minecraftVersionRange {
-				start = "26.3"
-				end = "26.3"
+				start = "26.2"
+				end = "26.2"
 			}
 
 			requires("fabric-api")

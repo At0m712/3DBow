@@ -3,11 +3,9 @@ package atom.bow3d.mixin;
 import atom.bow3d.client.BowArmRenderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.FirstPersonHandsAndItemsRenderer;
+import net.minecraft.client.player.AbstractClientPlayer;
+import net.minecraft.client.renderer.ItemInHandRenderer;
 import net.minecraft.client.renderer.SubmitNodeCollector;
-import net.minecraft.client.renderer.state.level.FirstPersonHandsAndItemsRenderState;
-import net.minecraft.client.renderer.state.level.PlayerRenderState;
-import net.minecraft.client.renderer.entity.state.AvatarRenderState;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
@@ -18,10 +16,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(FirstPersonHandsAndItemsRenderer.class)
+@Mixin(ItemInHandRenderer.class)
 public abstract class FirstPersonHandsAndItemsRendererMixin {
 
 	@Shadow
@@ -40,62 +39,53 @@ public abstract class FirstPersonHandsAndItemsRendererMixin {
 		return anim;
 	}
 
-
-	@org.spongepowered.asm.mixin.injection.ModifyVariable(
+	@ModifyVariable(
 		method = "submitArmWithItem",
 		at = @At("HEAD"),
 		argsOnly = true,
 		ordinal = 3
 	)
 	private float bow3d$cancelBowInverseArmHeight(
-		float inverseArmHeight,
-		PlayerRenderState playerState,
-		FirstPersonHandsAndItemsRenderState state,
+		float equipProgress,
+		AbstractClientPlayer player,
 		float partialTicks,
-		float xRot,
+		float pitch,
 		InteractionHand hand,
-		float attack,
+		float swingProgress,
 		ItemStack itemStack
 	) {
-		if (itemStack.is(net.minecraft.world.item.Items.BOW)) {
-			net.minecraft.client.renderer.entity.state.AvatarRenderState avatar = playerState.avatarRenderState;
-			if (avatar != null && avatar.isUsingItem && state.useItemRemainingTicks > 0) {
+		if (itemStack.is(Items.BOW)) {
+			if (player.isUsingItem() && player.getUseItemRemainingTicks() > 0 && player.getUsedItemHand() == hand) {
 				return 0.0F;
 			}
 		}
-		return inverseArmHeight;
+		return equipProgress;
 	}
 
 	@Inject(
 		method = "submitArmWithItem",
 		at = @At(
 			value = "INVOKE",
-			target = "Lnet/minecraft/client/renderer/item/ItemStackRenderState;submit(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;III)V"
+			target = "Lnet/minecraft/client/renderer/ItemInHandRenderer;renderItem(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;I)V"
 		)
 	)
 	private void bow3d$pushBowForwardOnDraw(
-		PlayerRenderState playerState,
-		FirstPersonHandsAndItemsRenderState state,
+		AbstractClientPlayer player,
 		float partialTicks,
-		float xRot,
+		float pitch,
 		InteractionHand hand,
-		float attack,
+		float swingProgress,
 		ItemStack itemStack,
-		float inverseArmHeight,
+		float equipProgress,
 		PoseStack poseStack,
 		SubmitNodeCollector submitNodeCollector,
 		int lightCoords,
 		CallbackInfo ci
 	) {
 		if (itemStack.is(Items.BOW)) {
-			AvatarRenderState avatar = playerState.avatarRenderState;
-			boolean isUsing = state.useItemRemainingTicks > 0 && (
-				(avatar != null && avatar.isUsingItem && (avatar.useItemHand == hand || avatar.useItemHand == null))
-				|| (this.minecraft.player != null && this.minecraft.player.isUsingItem())
-			);
+			boolean isUsing = player.isUsingItem() && player.getUseItemRemainingTicks() > 0 && player.getUsedItemHand() == hand;
 			if (isUsing) {
-				int useDuration = (hand == InteractionHand.MAIN_HAND) ? state.mainHandUseDuration : state.offHandUseDuration;
-				float timeHeld = (float) useDuration - (state.useItemRemainingTicks - partialTicks + 1.0F);
+				float timeHeld = (float) itemStack.getUseDuration(player) - ((float) player.getUseItemRemainingTicks() - partialTicks + 1.0F);
 				float pull = Mth.clamp(timeHeld / 20.0F, 0.0F, 1.0F);
 				float pushProgress = pull * pull * (3.0F - 2.0F * pull);
 
@@ -112,27 +102,25 @@ public abstract class FirstPersonHandsAndItemsRendererMixin {
 		method = "submitArmWithItem",
 		at = @At(
 			value = "INVOKE",
-			target = "Lnet/minecraft/client/renderer/item/ItemStackRenderState;submit(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;III)V",
+			target = "Lnet/minecraft/client/renderer/ItemInHandRenderer;renderItem(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemDisplayContext;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;I)V",
 			shift = At.Shift.AFTER
 		)
 	)
 	private void renderFirstPersonBowArms(
-		PlayerRenderState playerState,
-		FirstPersonHandsAndItemsRenderState state,
+		AbstractClientPlayer player,
 		float partialTicks,
-		float xRot,
+		float pitch,
 		InteractionHand hand,
-		float attack,
+		float swingProgress,
 		ItemStack itemStack,
-		float inverseArmHeight,
+		float equipProgress,
 		PoseStack poseStack,
 		SubmitNodeCollector submitNodeCollector,
 		int lightCoords,
 		CallbackInfo ci
 	) {
 		BowArmRenderer.renderBowArms(
-			playerState,
-			state,
+			player,
 			hand,
 			itemStack,
 			partialTicks,

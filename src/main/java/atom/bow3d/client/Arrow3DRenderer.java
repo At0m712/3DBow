@@ -183,14 +183,14 @@ public class Arrow3DRenderer {
 
 		// Deplacement d'animation dans l'espace de la main et de l'arc
 		poseStack.translate(offsetX, offsetY, offsetZ);
-		if (rotX != 0.0F) poseStack.rotateDegrees(Axis.XP, rotX);
-		if (rotY != 0.0F) poseStack.rotateDegrees(Axis.YP, rotY);
-		if (rotZ != 0.0F) poseStack.rotateDegrees(Axis.ZP, rotZ);
+		if (rotX != 0.0F) poseStack.mulPose(Axis.XP.rotationDegrees(rotX));
+		if (rotY != 0.0F) poseStack.mulPose(Axis.YP.rotationDegrees(rotY));
+		if (rotZ != 0.0F) poseStack.mulPose(Axis.ZP.rotationDegrees(rotZ));
 
 		// Transformation standard firstperson_righthand de bow.json
 		// translation: [-10.75, 1, -1.25], rotation: [-90, -20, -95], scale: [2, 2, 2]
 		poseStack.translate(-10.75F * 0.0625F, 1.0F * 0.0625F, -1.25F * 0.0625F);
-		poseStack.rotate(new Quaternionf().rotationXYZ(
+		poseStack.mulPose(new Quaternionf().rotationXYZ(
 			-90.0F * (float) (Math.PI / 180.0),
 			-20.0F * (float) (Math.PI / 180.0),
 			-95.0F * (float) (Math.PI / 180.0)
@@ -216,7 +216,7 @@ public class Arrow3DRenderer {
 		// Groupe 1 : Manche, pointe et 2 empennages (rotation ZYX: 90, 0, 12)
 		poseStack.pushPose();
 		poseStack.translate(originX, originY, originZ);
-		poseStack.rotate(new Quaternionf().rotationZYX(
+		poseStack.mulPose(new Quaternionf().rotationZYX(
 			90.0F * (float) (Math.PI / 180.0),
 			0.0F,
 			12.0F * (float) (Math.PI / 180.0)
@@ -240,7 +240,7 @@ public class Arrow3DRenderer {
 		// Groupe 2 : Les 2 autres empennages a 90 degres (rotation ZYX: 180, 78, 90)
 		poseStack.pushPose();
 		poseStack.translate(originX, originY, originZ);
-		poseStack.rotate(new Quaternionf().rotationZYX(
+		poseStack.mulPose(new Quaternionf().rotationZYX(
 			180.0F * (float) (Math.PI / 180.0),
 			78.0F * (float) (Math.PI / 180.0),
 			90.0F * (float) (Math.PI / 180.0)
