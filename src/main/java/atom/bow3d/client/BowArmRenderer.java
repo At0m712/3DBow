@@ -67,6 +67,7 @@ public class BowArmRenderer {
 
 		boolean isLocalPlayer = minecraft.player != null;
 		boolean hasArrows = isLocalPlayer && (!minecraft.player.getProjectile(itemStack).isEmpty() || minecraft.player.getAbilities().instabuild);
+		boolean hasFlame = HasFlameProperty.hasFlame(itemStack);
 
 		if (isUsing && BowShotTracker.isReloading()) {
 			BowShotTracker.cancelReload();
@@ -76,7 +77,44 @@ public class BowArmRenderer {
 		if (hasArrows && !isUsing && BowShotTracker.isReloading()) {
 			float reloadProg = BowShotTracker.getReloadProgress();
 			int tintColor = new ArrowTintSource().calculate(itemStack, null, minecraft.player);
-			Arrow3DRenderer.renderReloadArrow(poseStack, submitNodeCollector, lightCoords, tintColor, reloadProg);
+			Arrow3DRenderer.renderReloadArrow(poseStack, submitNodeCollector, lightCoords, tintColor, reloadProg, hasFlame);
+		}
+
+		// Particules de flamme et fumee au bout de la fleche quand l'arc possede l'enchantement Flamme
+		if (isUsing && hasFlame && hasArrows && minecraft.level != null && minecraft.player != null) {
+			if (minecraft.player.getRandom().nextFloat() < 0.45F) {
+				Player player = minecraft.player;
+				float pRotX = player.getXRot();
+				float pRotY = player.getYRot();
+				float cosX = Mth.cos(-pRotX * 0.017453292F);
+				float sinX = Mth.sin(-pRotX * 0.017453292F);
+				float cosY = Mth.cos(-pRotY * 0.017453292F - (float) Math.PI);
+				float sinY = Mth.sin(-pRotY * 0.017453292F - (float) Math.PI);
+
+				float fwdX = -sinY * cosX;
+				float fwdY = sinX;
+				float fwdZ = -cosY * cosX;
+
+				float rightX = cosY;
+				float rightZ = -sinY;
+
+				double px = player.getX() + fwdX * 0.72 + rightX * 0.22;
+				double py = player.getEyeY() + fwdY * 0.72 - 0.12;
+				double pz = player.getZ() + fwdZ * 0.72 + rightZ * 0.22;
+
+				minecraft.level.addParticle(
+					net.minecraft.core.particles.ParticleTypes.SMALL_FLAME,
+					px, py, pz,
+					fwdX * 0.015, 0.01 + player.getRandom().nextFloat() * 0.02, fwdZ * 0.015
+				);
+				if (player.getRandom().nextFloat() < 0.3F) {
+					minecraft.level.addParticle(
+						net.minecraft.core.particles.ParticleTypes.SMOKE,
+						px, py, pz,
+						0.0, 0.02, 0.0
+					);
+				}
+			}
 		}
 
 		// 2. Bras droit : gère la visée, le tir et le rechargement avec encochage réaliste

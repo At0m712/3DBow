@@ -23,6 +23,11 @@ public class ThreeDBowClient implements ClientModInitializer {
 			atom.bow3d.client.LoadingFireworkProperty.MAP_CODEC
 		);
 
+		ConditionalItemModelProperties.ID_MAPPER.put(
+			Identifier.fromNamespaceAndPath(ThreeDBow.MOD_ID, "has_flame"),
+			atom.bow3d.client.HasFlameProperty.MAP_CODEC
+		);
+
 		ItemTintSourcesAccessor.getIdMapper().put(
 			Identifier.fromNamespaceAndPath(ThreeDBow.MOD_ID, "arrow_tint"),
 			ArrowTintSource.MAP_CODEC

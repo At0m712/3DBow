@@ -23,6 +23,25 @@ public class Arrow3DRenderer {
 	public static final RenderType FLETCHING_RENDER_TYPE = RenderTypes.entityCutout(
 		Identifier.fromNamespaceAndPath("bow3d", "textures/item/arrow_fletching.png")
 	);
+	public static final RenderType FIRE_RENDER_TYPE = RenderTypes.entityCutout(
+		Identifier.fromNamespaceAndPath("bow3d", "textures/item/fire_0.png")
+	);
+
+	private static final FaceQuad[] FIRE_FACES = new FaceQuad[] {
+		// Plane 1: crossed quad XZ
+		new FaceQuad(Direction.NORTH, 0.0F, 0.0F, 16.0F, 16.0F, 2.325F, 13.5F, 8.649F, 3.725F, 16.3F, 8.651F),
+		new FaceQuad(Direction.SOUTH, 0.0F, 0.0F, 16.0F, 16.0F, 2.325F, 13.5F, 8.649F, 3.725F, 16.3F, 8.651F),
+		// Plane 2: crossed quad ZX
+		new FaceQuad(Direction.EAST,  0.0F, 0.0F, 16.0F, 16.0F, 3.024F, 13.5F, 7.95F, 3.026F, 16.3F, 9.35F),
+		new FaceQuad(Direction.WEST,  0.0F, 0.0F, 16.0F, 16.0F, 3.024F, 13.5F, 7.95F, 3.026F, 16.3F, 9.35F),
+		// Core flame box
+		new FaceQuad(Direction.NORTH, 0.0F, 0.0F, 16.0F, 16.0F, 2.575F, 13.6F, 8.2F, 3.475F, 16.0F, 9.1F),
+		new FaceQuad(Direction.SOUTH, 0.0F, 0.0F, 16.0F, 16.0F, 2.575F, 13.6F, 8.2F, 3.475F, 16.0F, 9.1F),
+		new FaceQuad(Direction.EAST,  0.0F, 0.0F, 16.0F, 16.0F, 2.575F, 13.6F, 8.2F, 3.475F, 16.0F, 9.1F),
+		new FaceQuad(Direction.WEST,  0.0F, 0.0F, 16.0F, 16.0F, 2.575F, 13.6F, 8.2F, 3.475F, 16.0F, 9.1F),
+		new FaceQuad(Direction.UP,    0.0F, 0.0F, 16.0F, 16.0F, 2.575F, 13.6F, 8.2F, 3.475F, 16.0F, 9.1F),
+		new FaceQuad(Direction.DOWN,  0.0F, 0.0F, 16.0F, 16.0F, 2.575F, 13.6F, 8.2F, 3.475F, 16.0F, 9.1F)
+	};
 
 	public record FaceQuad(
 		Direction dir,
@@ -126,6 +145,17 @@ public class Arrow3DRenderer {
 		int tintColor,
 		float reloadProg
 	) {
+		renderReloadArrow(poseStack, submitNodeCollector, lightCoords, tintColor, reloadProg, false);
+	}
+
+	public static void renderReloadArrow(
+		PoseStack poseStack,
+		SubmitNodeCollector submitNodeCollector,
+		int lightCoords,
+		int tintColor,
+		float reloadProg,
+		boolean hasFlame
+	) {
 		if (reloadProg < 0.35F || reloadProg >= 1.0F) {
 			return;
 		}
@@ -198,7 +228,7 @@ public class Arrow3DRenderer {
 		poseStack.scale(2.0F, 2.0F, 2.0F);
 		poseStack.translate(-0.5F, -0.5F, -0.5F);
 
-		renderArrowGeometry(poseStack, submitNodeCollector, lightCoords, tintColor);
+		renderArrowGeometry(poseStack, submitNodeCollector, lightCoords, tintColor, hasFlame);
 
 		poseStack.popPose();
 	}
@@ -207,7 +237,8 @@ public class Arrow3DRenderer {
 		PoseStack poseStack,
 		SubmitNodeCollector submitNodeCollector,
 		int lightCoords,
-		int tintColor
+		int tintColor,
+		boolean hasFlame
 	) {
 		float originX = 3.01852F / 16.0F;
 		float originY = 10.49352F / 16.0F;
@@ -230,6 +261,12 @@ public class Arrow3DRenderer {
 		submitNodeCollector.submitCustomGeometry(poseStack, TIP_RENDER_TYPE, (pose, buffer) -> {
 			renderQuads(pose, buffer, lightCoords, tintColor, TIP_FACES);
 		});
+
+		if (hasFlame) {
+			submitNodeCollector.submitCustomGeometry(poseStack, FIRE_RENDER_TYPE, (pose, buffer) -> {
+				renderQuads(pose, buffer, 0x00F000F0, 0xFFFFFFFF, FIRE_FACES);
+			});
+		}
 
 		submitNodeCollector.submitCustomGeometry(poseStack, FLETCHING_RENDER_TYPE, (pose, buffer) -> {
 			renderQuads(pose, buffer, lightCoords, 0xFFFFFFFF, FLETCHING_G1_FACES);
