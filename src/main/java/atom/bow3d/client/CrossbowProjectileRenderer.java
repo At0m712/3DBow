@@ -211,9 +211,9 @@ public class CrossbowProjectileRenderer {
 		// La main droite amene le projectile depuis le haut-droit, le descend et le place dans la rainure
 		float ease = t * t * (3.0F - 2.0F * t);
 
-		float offsetX = Mth.lerp(ease, 0.24F, 0.0F);
+		float offsetX = Mth.lerp(ease, 0.22F, 0.0F);
 		float offsetY = Mth.lerp(ease, 0.14F, 0.0F);
-		float offsetZ = Mth.lerp(ease, 0.12F, 0.0F);
+		float offsetZ = Mth.lerp(ease, 0.05F, 0.0F);
 
 		float rotX = Mth.lerp(ease, -14.0F, 0.0F);
 		float rotY = Mth.lerp(ease, -16.0F, 0.0F);

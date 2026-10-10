@@ -53,16 +53,15 @@ public class CrossbowArmRenderer {
 		Identifier skinTexture = avatarRenderState.skin.body().texturePath();
 
 		// =========================================================================
-		// 1. Bras gauche : sous le fût de l'arbalète pour la soutenir
+		// 1. Bras gauche : fixe sous le fût de l'arbalète pour la soutenir
 		// =========================================================================
 		poseStack.pushPose();
-		float pushProgress = isUsing ? (pull * pull * (3.0F - 2.0F * pull)) : 0.0F;
-		float leftX = Mth.lerp(pushProgress, -0.400F, -0.415F);
-		float leftY = Mth.lerp(pushProgress, -0.020F, -0.005F);
-		float leftZ = Mth.lerp(pushProgress, -0.470F, -0.490F);
-		float leftRx = Mth.lerp(pushProgress, -43.0F, -41.0F);
-		float leftRy = Mth.lerp(pushProgress, 18.0F, 16.0F);
-		float leftRz = Mth.lerp(pushProgress, -36.0F, -32.0F);
+		float leftX = -0.345F;
+		float leftY = -0.055F;
+		float leftZ = -0.470F;
+		float leftRx = -43.0F;
+		float leftRy = 17.0F;
+		float leftRz = -35.0F;
 
 		poseStack.translate(leftX, leftY, leftZ);
 		poseStack.rotateDegrees(Axis.XP, leftRx);
@@ -92,10 +91,10 @@ public class CrossbowArmRenderer {
 		}
 
 		// =========================================================================
-		// 2. Bras droit : positionné AU-DESSUS sur le rail (pose flèche & tire corde)
+		// 2. Bras droit : apparaît UNIQUEMENT pendant le chargement (pose flèche & tire corde)
 		// =========================================================================
-		if (isCharged) {
-			return; // Quand l'arbalète est chargée, la main droite disparaît !
+		if (!isUsing) {
+			return; // Pas de main droite au repos ou lorsque l'arbalète est chargée
 		}
 
 		poseStack.pushPose();
@@ -106,36 +105,26 @@ public class CrossbowArmRenderer {
 		float ry;
 		float rz;
 
-		if (isUsing) {
-			if (pull < 0.33F) {
-				// Phase 1 : la main droite vient d'au-dessus avec la flèche et la dépose sur le rail
-				float p = pull / 0.33F;
-				float ease = p * p * (3.0F - 2.0F * p);
-				targetX = Mth.lerp(ease, 0.10F, -0.16F);
-				targetY = Mth.lerp(ease, 0.26F, 0.14F);
-				targetZ = Mth.lerp(ease, -0.14F, -0.28F);
-				rx = Mth.lerp(ease, -35.0F, -25.0F);
-				ry = Mth.lerp(ease, -20.0F, -32.0F);
-				rz = Mth.lerp(ease, 32.0F, 38.0F);
-			} else {
-				// Phase 2 : la main droite attrape la corde sur le dessus du rail et la tire en arrière
-				float p = (pull - 0.33F) / 0.67F;
-				float ease = p * p * (3.0F - 2.0F * p);
-				targetX = Mth.lerp(ease, -0.16F, -0.19F);
-				targetY = Mth.lerp(ease, 0.14F, 0.11F);
-				targetZ = Mth.lerp(ease, -0.28F, 0.12F);
-				rx = Mth.lerp(ease, -25.0F, -18.0F);
-				ry = Mth.lerp(ease, -32.0F, -32.0F);
-				rz = Mth.lerp(ease, 38.0F, 40.0F);
-			}
+		if (pull < 0.33F) {
+			// Phase 1 : la main droite vient d'au-dessus avec la flèche et la dépose sur le rail
+			float p = pull / 0.33F;
+			float ease = p * p * (3.0F - 2.0F * p);
+			targetX = Mth.lerp(ease, 0.08F, -0.16F);
+			targetY = Mth.lerp(ease, 0.26F, 0.14F);
+			targetZ = Mth.lerp(ease, -0.22F, -0.36F);
+			rx = Mth.lerp(ease, -35.0F, -25.0F);
+			ry = Mth.lerp(ease, -20.0F, -32.0F);
+			rz = Mth.lerp(ease, 32.0F, 38.0F);
 		} else {
-			// Au repos (non chargée) : main droite sur la poignée arrière
-			targetX = -0.17F;
-			targetY = 0.11F;
-			targetZ = 0.12F;
-			rx = -18.0F;
-			ry = -28.0F;
-			rz = 36.0F;
+			// Phase 2 : la main droite attrape la corde sur le dessus du rail et la tire en arrière
+			float p = (pull - 0.33F) / 0.67F;
+			float ease = p * p * (3.0F - 2.0F * p);
+			targetX = Mth.lerp(ease, -0.16F, -0.18F);
+			targetY = Mth.lerp(ease, 0.14F, 0.11F);
+			targetZ = Mth.lerp(ease, -0.36F, 0.04F);
+			rx = Mth.lerp(ease, -25.0F, -18.0F);
+			ry = Mth.lerp(ease, -32.0F, -32.0F);
+			rz = Mth.lerp(ease, 38.0F, 40.0F);
 		}
 
 		poseStack.translate(targetX, targetY, targetZ);
