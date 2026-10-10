@@ -57,12 +57,12 @@ public class CrossbowArmRenderer {
 		// =========================================================================
 		poseStack.pushPose();
 		float pushProgress = isUsing ? (pull * pull * (3.0F - 2.0F * pull)) : 0.0F;
-		float leftX = Mth.lerp(pushProgress, -0.460F, -0.475F);
+		float leftX = Mth.lerp(pushProgress, -0.400F, -0.415F);
 		float leftY = Mth.lerp(pushProgress, -0.020F, -0.005F);
 		float leftZ = Mth.lerp(pushProgress, -0.470F, -0.490F);
-		float leftRx = Mth.lerp(pushProgress, -44.0F, -42.0F);
-		float leftRy = Mth.lerp(pushProgress, 20.0F, 18.0F);
-		float leftRz = Mth.lerp(pushProgress, -38.0F, -34.0F);
+		float leftRx = Mth.lerp(pushProgress, -43.0F, -41.0F);
+		float leftRy = Mth.lerp(pushProgress, 18.0F, 16.0F);
+		float leftRz = Mth.lerp(pushProgress, -36.0F, -32.0F);
 
 		poseStack.translate(leftX, leftY, leftZ);
 		poseStack.rotateDegrees(Axis.XP, leftRx);
@@ -94,6 +94,10 @@ public class CrossbowArmRenderer {
 		// =========================================================================
 		// 2. Bras droit : positionné AU-DESSUS sur le rail (pose flèche & tire corde)
 		// =========================================================================
+		if (isCharged) {
+			return; // Quand l'arbalète est chargée, la main droite disparaît !
+		}
+
 		poseStack.pushPose();
 		float targetX;
 		float targetY;
@@ -124,14 +128,6 @@ public class CrossbowArmRenderer {
 				ry = Mth.lerp(ease, -32.0F, -32.0F);
 				rz = Mth.lerp(ease, 38.0F, 40.0F);
 			}
-		} else if (isCharged) {
-			// Arbalète chargée : main droite sur la poignée arrière / détente, prête à tirer
-			targetX = -0.17F;
-			targetY = 0.11F;
-			targetZ = 0.12F;
-			rx = -18.0F;
-			ry = -28.0F;
-			rz = 36.0F;
 		} else {
 			// Au repos (non chargée) : main droite sur la poignée arrière
 			targetX = -0.17F;
