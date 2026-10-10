@@ -382,16 +382,16 @@ public class Arrow3DRenderer {
 		float x2, float y2, float z2,
 		float x3, float y3, float z3
 	) {
-		// Front face
-		consumer.addVertex(pose, x0, y0, z0).setColor(0xFFFFFFFF).setUv(0.0F, 0.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(pose, 0.0F, 1.0F, 0.0F);
-		consumer.addVertex(pose, x1, y1, z1).setColor(0xFFFFFFFF).setUv(0.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(pose, 0.0F, 1.0F, 0.0F);
-		consumer.addVertex(pose, x2, y2, z2).setColor(0xFFFFFFFF).setUv(1.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(pose, 0.0F, 1.0F, 0.0F);
-		consumer.addVertex(pose, x3, y3, z3).setColor(0xFFFFFFFF).setUv(1.0F, 0.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(pose, 0.0F, 1.0F, 0.0F);
+		// Front face - fixed upward normal in view space (0, 1, 0) for 100% full diffuse brightness
+		consumer.addVertex(pose, x0, y0, z0).setColor(0xFFFFFFFF).setUv(0.0F, 0.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(0.0F, 1.0F, 0.0F);
+		consumer.addVertex(pose, x1, y1, z1).setColor(0xFFFFFFFF).setUv(0.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(0.0F, 1.0F, 0.0F);
+		consumer.addVertex(pose, x2, y2, z2).setColor(0xFFFFFFFF).setUv(1.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(0.0F, 1.0F, 0.0F);
+		consumer.addVertex(pose, x3, y3, z3).setColor(0xFFFFFFFF).setUv(1.0F, 0.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(0.0F, 1.0F, 0.0F);
 
-		// Back face
-		consumer.addVertex(pose, x3, y3, z3).setColor(0xFFFFFFFF).setUv(1.0F, 0.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(pose, 0.0F, -1.0F, 0.0F);
-		consumer.addVertex(pose, x2, y2, z2).setColor(0xFFFFFFFF).setUv(1.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(pose, 0.0F, -1.0F, 0.0F);
-		consumer.addVertex(pose, x1, y1, z1).setColor(0xFFFFFFFF).setUv(0.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(pose, 0.0F, -1.0F, 0.0F);
-		consumer.addVertex(pose, x0, y0, z0).setColor(0xFFFFFFFF).setUv(0.0F, 0.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(pose, 0.0F, -1.0F, 0.0F);
+		// Back face - also fixed upward normal so both sides remain 100% full bright
+		consumer.addVertex(pose, x3, y3, z3).setColor(0xFFFFFFFF).setUv(1.0F, 0.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(0.0F, 1.0F, 0.0F);
+		consumer.addVertex(pose, x2, y2, z2).setColor(0xFFFFFFFF).setUv(1.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(0.0F, 1.0F, 0.0F);
+		consumer.addVertex(pose, x1, y1, z1).setColor(0xFFFFFFFF).setUv(0.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(0.0F, 1.0F, 0.0F);
+		consumer.addVertex(pose, x0, y0, z0).setColor(0xFFFFFFFF).setUv(0.0F, 0.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(0.0F, 1.0F, 0.0F);
 	}
 }
