@@ -1,9 +1,8 @@
 {
     "credit": "Made with Blockbench",
     "textures": {
-        "crossbow_wood": "bow3d:item/crossbow_wood",
+        "bow_wood": "bow3d:item/bow_wood",
         "crossbow_metal": "bow3d:item/crossbow_metal",
-        "bow_wood": "bow3d:item/crossbow_wood",
         "bow_grip": "bow3d:item/bow_grip",
         "bow_string": "bow3d:item/bow_string",
         "arrow_shaft": "bow3d:item/arrow_shaft",
@@ -12,7 +11,7 @@
         "arrow_fletching": "bow3d:item/arrow_fletching",
         "arrow": "bow3d:item/arrow",
         "firework_rocket": "bow3d:item/firework_rocket",
-        "particle": "bow3d:item/crossbow_wood"
+        "particle": "bow3d:item/bow_wood"
     },
     "elements": [
         {
@@ -45,7 +44,7 @@
                         2,
                         5.29412
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "east": {
                     "uv": [
@@ -54,7 +53,7 @@
                         1.86667,
                         5.29412
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "south": {
                     "uv": [
@@ -63,7 +62,7 @@
                         0.34274,
                         5.29412
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "west": {
                     "uv": [
@@ -72,7 +71,7 @@
                         1,
                         5.29412
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "up": {
                     "uv": [
@@ -81,7 +80,7 @@
                         0.34274,
                         1
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "down": {
                     "uv": [
@@ -90,7 +89,7 @@
                         0.34274,
                         1.86667
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 }
             }
         },
@@ -124,7 +123,7 @@
                         2,
                         4.30588
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "east": {
                     "uv": [
@@ -133,7 +132,7 @@
                         2,
                         4.30588
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "south": {
                     "uv": [
@@ -142,7 +141,7 @@
                         0.34274,
                         4.30588
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "west": {
                     "uv": [
@@ -151,7 +150,7 @@
                         1,
                         4.30588
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "up": {
                     "uv": [
@@ -160,7 +159,7 @@
                         0.34274,
                         1
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "down": {
                     "uv": [
@@ -169,7 +168,7 @@
                         0.34274,
                         2
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 }
             }
         },
@@ -203,7 +202,7 @@
                         2,
                         5.29412
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "east": {
                     "uv": [
@@ -212,7 +211,7 @@
                         1.86667,
                         5.29412
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "south": {
                     "uv": [
@@ -221,7 +220,7 @@
                         0.32816,
                         5.29412
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "west": {
                     "uv": [
@@ -230,7 +229,7 @@
                         1,
                         5.29412
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "up": {
                     "uv": [
@@ -239,7 +238,7 @@
                         0.32816,
                         1
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "down": {
                     "uv": [
@@ -248,7 +247,7 @@
                         0.32816,
                         1.86667
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 }
             }
         },
@@ -361,7 +360,7 @@
                         2,
                         6
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "east": {
                     "uv": [
@@ -370,7 +369,7 @@
                         2,
                         6
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "south": {
                     "uv": [
@@ -379,7 +378,7 @@
                         0.34274,
                         6
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "west": {
                     "uv": [
@@ -388,7 +387,7 @@
                         1,
                         6
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "up": {
                     "uv": [
@@ -397,7 +396,7 @@
                         0.34274,
                         1
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "down": {
                     "uv": [
@@ -406,7 +405,7 @@
                         0.34274,
                         2
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 }
             }
         },
@@ -2287,7 +2286,7 @@
                         2,
                         6
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "east": {
                     "uv": [
@@ -2296,7 +2295,7 @@
                         2,
                         6
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "south": {
                     "uv": [
@@ -2305,7 +2304,7 @@
                         0.5,
                         6
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "west": {
                     "uv": [
@@ -2314,7 +2313,7 @@
                         1,
                         6
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "up": {
                     "uv": [
@@ -2323,7 +2322,7 @@
                         0.5,
                         1
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "down": {
                     "uv": [
@@ -2332,7 +2331,7 @@
                         0.5,
                         2
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 }
             }
         },
@@ -2366,7 +2365,7 @@
                         2,
                         6
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "east": {
                     "uv": [
@@ -2375,7 +2374,7 @@
                         2,
                         6
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "south": {
                     "uv": [
@@ -2384,7 +2383,7 @@
                         0.44,
                         6
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "west": {
                     "uv": [
@@ -2393,7 +2392,7 @@
                         1,
                         6
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "up": {
                     "uv": [
@@ -2402,7 +2401,7 @@
                         0.44,
                         1
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "down": {
                     "uv": [
@@ -2411,7 +2410,7 @@
                         0.44,
                         2
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 }
             }
         },
@@ -2445,7 +2444,7 @@
                         2,
                         3.44262
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "east": {
                     "uv": [
@@ -2454,7 +2453,7 @@
                         2,
                         3.44262
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "south": {
                     "uv": [
@@ -2463,7 +2462,7 @@
                         0.5,
                         3.44262
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "west": {
                     "uv": [
@@ -2472,7 +2471,7 @@
                         1,
                         3.44262
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "up": {
                     "uv": [
@@ -2481,7 +2480,7 @@
                         0.5,
                         1
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "down": {
                     "uv": [
@@ -2490,7 +2489,7 @@
                         0.5,
                         2
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 }
             }
         },
@@ -2524,7 +2523,7 @@
                         1,
                         3.44262
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "east": {
                     "uv": [
@@ -2533,7 +2532,7 @@
                         2,
                         3.44262
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "south": {
                     "uv": [
@@ -2542,7 +2541,7 @@
                         3,
                         3.44262
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "west": {
                     "uv": [
@@ -2551,7 +2550,7 @@
                         4,
                         3.44262
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "up": {
                     "uv": [
@@ -2560,7 +2559,7 @@
                         5,
                         1
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "down": {
                     "uv": [
@@ -2569,7 +2568,7 @@
                         5,
                         2
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 }
             }
         },
@@ -2603,7 +2602,7 @@
                         1,
                         6
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "east": {
                     "uv": [
@@ -2612,7 +2611,7 @@
                         2,
                         6
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "south": {
                     "uv": [
@@ -2621,7 +2620,7 @@
                         3,
                         6
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "west": {
                     "uv": [
@@ -2630,7 +2629,7 @@
                         4,
                         6
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "up": {
                     "uv": [
@@ -2639,7 +2638,7 @@
                         5,
                         1
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "down": {
                     "uv": [
@@ -2648,7 +2647,7 @@
                         5,
                         2
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 }
             }
         },
@@ -2682,7 +2681,7 @@
                         2,
                         6
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "east": {
                     "uv": [
@@ -2691,7 +2690,7 @@
                         2,
                         6
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "south": {
                     "uv": [
@@ -2700,7 +2699,7 @@
                         0.44,
                         6
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "west": {
                     "uv": [
@@ -2709,7 +2708,7 @@
                         1,
                         6
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "up": {
                     "uv": [
@@ -2718,7 +2717,7 @@
                         0.44,
                         1
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 },
                 "down": {
                     "uv": [
@@ -2727,7 +2726,7 @@
                         0.44,
                         2
                     ],
-                    "texture": "#crossbow_wood"
+                    "texture": "#bow_wood"
                 }
             }
         }
