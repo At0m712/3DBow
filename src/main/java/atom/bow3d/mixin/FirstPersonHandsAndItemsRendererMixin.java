@@ -33,7 +33,7 @@ public abstract class FirstPersonHandsAndItemsRendererMixin {
 	)
 	private ItemUseAnimation cancelVanillaBowAnimation(ItemStack instance) {
 		ItemUseAnimation anim = instance.getUseAnimation();
-		if (anim == ItemUseAnimation.BOW) {
+		if (anim == ItemUseAnimation.BOW || anim == ItemUseAnimation.CROSSBOW) {
 			return ItemUseAnimation.NONE;
 		}
 		return anim;
@@ -54,7 +54,7 @@ public abstract class FirstPersonHandsAndItemsRendererMixin {
 		float swingProgress,
 		ItemStack itemStack
 	) {
-		if (itemStack.is(Items.BOW)) {
+		if (itemStack.is(Items.BOW) || itemStack.is(Items.CROSSBOW)) {
 			if (player.isUsingItem() && player.getUseItemRemainingTicks() > 0 && player.getUsedItemHand() == hand) {
 				return 0.0F;
 			}
@@ -119,15 +119,28 @@ public abstract class FirstPersonHandsAndItemsRendererMixin {
 		int lightCoords,
 		CallbackInfo ci
 	) {
-		BowArmRenderer.renderBowArms(
-			player,
-			hand,
-			itemStack,
-			partialTicks,
-			poseStack,
-			submitNodeCollector,
-			lightCoords,
-			this.minecraft
-		);
+		if (itemStack.is(Items.CROSSBOW)) {
+			atom.bow3d.client.CrossbowArmRenderer.renderCrossbowArms(
+				player,
+				hand,
+				itemStack,
+				partialTicks,
+				poseStack,
+				submitNodeCollector,
+				lightCoords,
+				this.minecraft
+			);
+		} else {
+			BowArmRenderer.renderBowArms(
+				player,
+				hand,
+				itemStack,
+				partialTicks,
+				poseStack,
+				submitNodeCollector,
+				lightCoords,
+				this.minecraft
+			);
+		}
 	}
 }

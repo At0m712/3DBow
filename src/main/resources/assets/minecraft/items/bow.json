@@ -13,62 +13,127 @@
     ],
     "fallback": {
       "type": "minecraft:condition",
-      "property": "minecraft:using_item",
+      "property": "bow3d:has_flame",
       "on_true": {
-        "type": "minecraft:range_dispatch",
-        "entries": [
-          {
-            "model": {
-              "type": "minecraft:model",
-              "model": "minecraft:item/bow_pulling_1",
-              "tints": [
-                {
-                  "type": "bow3d:arrow_tint"
-                }
-              ]
-            },
-            "threshold": 0.65
-          },
-          {
-            "model": {
-              "type": "minecraft:model",
-              "model": "minecraft:item/bow_pulling_2",
-              "tints": [
-                {
-                  "type": "bow3d:arrow_tint"
-                }
-              ]
-            },
-            "threshold": 0.9
-          }
-        ],
-        "fallback": {
-          "type": "minecraft:model",
-          "model": "minecraft:item/bow_pulling_0",
-          "tints": [
+        "type": "minecraft:condition",
+        "property": "minecraft:using_item",
+        "on_true": {
+          "type": "minecraft:range_dispatch",
+          "entries": [
             {
-              "type": "bow3d:arrow_tint"
+              "model": {
+                "type": "minecraft:model",
+                "model": "minecraft:item/bow_flame_pulling_1",
+                "tints": [
+                  {
+                    "type": "bow3d:arrow_tint"
+                  }
+                ]
+              },
+              "threshold": 0.65
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "minecraft:item/bow_flame_pulling_2",
+                "tints": [
+                  {
+                    "type": "bow3d:arrow_tint"
+                  }
+                ]
+              },
+              "threshold": 0.9
             }
-          ]
+          ],
+          "fallback": {
+            "type": "minecraft:model",
+            "model": "minecraft:item/bow_flame_pulling_0",
+            "tints": [
+              {
+                "type": "bow3d:arrow_tint"
+              }
+            ]
+          },
+          "property": "minecraft:use_duration",
+          "scale": 0.05
         },
-        "property": "minecraft:use_duration",
-        "scale": 0.05
+        "on_false": {
+          "type": "minecraft:condition",
+          "property": "bow3d:has_arrow",
+          "on_true": {
+            "type": "minecraft:model",
+            "model": "minecraft:item/bow_flame",
+            "tints": [
+              {
+                "type": "bow3d:arrow_tint"
+              }
+            ]
+          },
+          "on_false": {
+            "type": "minecraft:model",
+            "model": "minecraft:item/bow_empty"
+          }
+        }
       },
       "on_false": {
         "type": "minecraft:condition",
-        "property": "bow3d:has_arrow",
+        "property": "minecraft:using_item",
         "on_true": {
-          "type": "minecraft:model",
-          "model": "minecraft:item/bow",
-          "tints": [
+          "type": "minecraft:range_dispatch",
+          "entries": [
             {
-              "type": "bow3d:arrow_tint"
+              "model": {
+                "type": "minecraft:model",
+                "model": "minecraft:item/bow_pulling_1",
+                "tints": [
+                  {
+                    "type": "bow3d:arrow_tint"
+                  }
+                ]
+              },
+              "threshold": 0.65
+            },
+            {
+              "model": {
+                "type": "minecraft:model",
+                "model": "minecraft:item/bow_pulling_2",
+                "tints": [
+                  {
+                    "type": "bow3d:arrow_tint"
+                  }
+                ]
+              },
+              "threshold": 0.9
             }
-          ]
+          ],
+          "fallback": {
+            "type": "minecraft:model",
+            "model": "minecraft:item/bow_pulling_0",
+            "tints": [
+              {
+                "type": "bow3d:arrow_tint"
+              }
+            ]
+          },
+          "property": "minecraft:use_duration",
+          "scale": 0.05
         },
         "on_false": {
-          "type": "minecraft:model",
-          "model": "minecraft:item/bow_empty"
+          "type": "minecraft:condition",
+          "property": "bow3d:has_arrow",
+          "on_true": {
+            "type": "minecraft:model",
+            "model": "minecraft:item/bow",
+            "tints": [
+              {
+                "type": "bow3d:arrow_tint"
+              }
+            ]
+          },
+          "on_false": {
+            "type": "minecraft:model",
+            "model": "minecraft:item/bow_empty"
+          }
         }
       }
     }
