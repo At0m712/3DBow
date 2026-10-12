@@ -1,15 +1,16 @@
 {
 	"required": true,
 	"package": "atom.bow3d.mixin",
-	"compatibilityLevel": "JAVA_25",
+	"compatibilityLevel": "JAVA_21",
 	"mixins": [
 	],
 	"client": [
 		"AvatarRendererMixin",
 		"BowItemMixin",
+		"DoubleVertexConsumerAccessor",
 		"FirstPersonHandsAndItemsMixin",
 		"FirstPersonHandsAndItemsRendererMixin",
-		"ItemFeatureRendererMixin",
+		"ItemRendererMixin",
 		"ItemTintSourcesAccessor",
 		"PlayerModelMixin"
 	],

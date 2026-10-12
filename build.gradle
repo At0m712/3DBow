@@ -38,7 +38,7 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 25
+	it.options.release = 21
 }
 
 java {
@@ -47,8 +47,8 @@ java {
 	// If you remove this line, sources will not be generated.
 	withSourcesJar()
 
-	sourceCompatibility = JavaVersion.VERSION_25
-	targetCompatibility = JavaVersion.VERSION_25
+	sourceCompatibility = JavaVersion.VERSION_21
+	targetCompatibility = JavaVersion.VERSION_21
 }
 
 jar {
@@ -90,8 +90,8 @@ publishing {
 			changelogType = "markdown"
 
 			minecraftVersionRange {
-				start = "26.1"
-				end = "26.1.2"
+				start = "1.21.11"
+				end = "1.21.11"
 			}
 
 			client = true
@@ -105,8 +105,8 @@ publishing {
 			accessToken = providers.environmentVariable("MODRINTH_TOKEN")
 
 			minecraftVersionRange {
-				start = "26.1"
-				end = "26.1.2"
+				start = "1.21.11"
+				end = "1.21.11"
 			}
 
 			requires("fabric-api")
