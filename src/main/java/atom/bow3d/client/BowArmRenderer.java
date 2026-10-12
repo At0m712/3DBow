@@ -70,7 +70,8 @@ public class BowArmRenderer {
 		if (hasArrows && !isUsing && BowShotTracker.isReloading()) {
 			float reloadProg = BowShotTracker.getReloadProgress();
 			int tintColor = new ArrowTintSource().calculate(itemStack, null, player);
-			Arrow3DRenderer.renderReloadArrow(poseStack, submitNodeCollector, lightCoords, tintColor, reloadProg);
+			boolean hasFlame = HasFlameProperty.hasFlame(itemStack);
+			Arrow3DRenderer.renderReloadArrow(poseStack, submitNodeCollector, lightCoords, tintColor, reloadProg, hasFlame);
 		}
 
 		// 2. Bras droit : gère la visée, le tir et le rechargement avec encochage réaliste

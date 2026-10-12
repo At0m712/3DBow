@@ -23,6 +23,9 @@ public class Arrow3DRenderer {
 	public static final RenderType FLETCHING_RENDER_TYPE = RenderTypes.entityCutout(
 		Identifier.fromNamespaceAndPath("bow3d", "textures/item/arrow_fletching.png")
 	);
+	public static final RenderType FIRE_RENDER_TYPE = RenderTypes.entityCutout(
+		Identifier.fromNamespaceAndPath("bow3d", "textures/item/fire_0.png")
+	);
 
 	public record FaceQuad(
 		Direction dir,
@@ -126,6 +129,17 @@ public class Arrow3DRenderer {
 		int tintColor,
 		float reloadProg
 	) {
+		renderReloadArrow(poseStack, submitNodeCollector, lightCoords, tintColor, reloadProg, false);
+	}
+
+	public static void renderReloadArrow(
+		PoseStack poseStack,
+		SubmitNodeCollector submitNodeCollector,
+		int lightCoords,
+		int tintColor,
+		float reloadProg,
+		boolean hasFlame
+	) {
 		if (reloadProg < 0.35F || reloadProg >= 1.0F) {
 			return;
 		}
@@ -198,7 +212,7 @@ public class Arrow3DRenderer {
 		poseStack.scale(2.0F, 2.0F, 2.0F);
 		poseStack.translate(-0.5F, -0.5F, -0.5F);
 
-		renderArrowGeometry(poseStack, submitNodeCollector, lightCoords, tintColor);
+		renderArrowGeometry(poseStack, submitNodeCollector, lightCoords, tintColor, hasFlame);
 
 		poseStack.popPose();
 	}
@@ -207,7 +221,8 @@ public class Arrow3DRenderer {
 		PoseStack poseStack,
 		SubmitNodeCollector submitNodeCollector,
 		int lightCoords,
-		int tintColor
+		int tintColor,
+		boolean hasFlame
 	) {
 		float originX = 3.01852F / 16.0F;
 		float originY = 10.49352F / 16.0F;
@@ -230,6 +245,12 @@ public class Arrow3DRenderer {
 		submitNodeCollector.submitCustomGeometry(poseStack, TIP_RENDER_TYPE, (pose, buffer) -> {
 			renderQuads(pose, buffer, lightCoords, tintColor, TIP_FACES);
 		});
+
+		if (hasFlame) {
+			submitNodeCollector.submitCustomGeometry(poseStack, FIRE_RENDER_TYPE, (pose, buffer) -> {
+				renderFireQuads(pose, buffer);
+			});
+		}
 
 		submitNodeCollector.submitCustomGeometry(poseStack, FLETCHING_RENDER_TYPE, (pose, buffer) -> {
 			renderQuads(pose, buffer, lightCoords, 0xFFFFFFFF, FLETCHING_G1_FACES);
@@ -334,5 +355,42 @@ public class Arrow3DRenderer {
 		consumer.addVertex(pose, x1, y1, z1).setColor(color).setUv(u0, v1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(lightCoords).setNormal(pose, nx, ny, nz);
 		consumer.addVertex(pose, x2, y2, z2).setColor(color).setUv(u1, v1).setOverlay(OverlayTexture.NO_OVERLAY).setLight(lightCoords).setNormal(pose, nx, ny, nz);
 		consumer.addVertex(pose, x3, y3, z3).setColor(color).setUv(u1, v0).setOverlay(OverlayTexture.NO_OVERLAY).setLight(lightCoords).setNormal(pose, nx, ny, nz);
+	}
+
+	private static void renderFireQuads(PoseStack.Pose pose, VertexConsumer consumer) {
+		float cx = 3.025F;
+		float cy = 14.41F;
+		float cz = 8.65F;
+
+		float minZ = (cz - 0.35F) / 16.0F;
+		float maxZ = (cz + 2.85F) / 16.0F;
+		float minX = (cx - 0.85F) / 16.0F;
+		float maxX = (cx + 0.85F) / 16.0F;
+		float midY = cy / 16.0F;
+
+		// Plane 1: parallel to XZ plane (facing +/- Y)
+		// Top of flame (V=0) is at maxZ; Base of flame (V=1) is at minZ.
+		addCrossedQuad(consumer, pose, minX, midY, maxZ, minX, midY, minZ, maxX, midY, minZ, maxX, midY, maxZ);
+	}
+
+	private static void addCrossedQuad(
+		VertexConsumer consumer,
+		PoseStack.Pose pose,
+		float x0, float y0, float z0,
+		float x1, float y1, float z1,
+		float x2, float y2, float z2,
+		float x3, float y3, float z3
+	) {
+		// Front face - fixed upward normal in view space (0, 1, 0) for 100% full diffuse brightness
+		consumer.addVertex(pose, x0, y0, z0).setColor(0xFFFFFFFF).setUv(0.0F, 0.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(0.0F, 1.0F, 0.0F);
+		consumer.addVertex(pose, x1, y1, z1).setColor(0xFFFFFFFF).setUv(0.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(0.0F, 1.0F, 0.0F);
+		consumer.addVertex(pose, x2, y2, z2).setColor(0xFFFFFFFF).setUv(1.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(0.0F, 1.0F, 0.0F);
+		consumer.addVertex(pose, x3, y3, z3).setColor(0xFFFFFFFF).setUv(1.0F, 0.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(0.0F, 1.0F, 0.0F);
+
+		// Back face - also fixed upward normal so both sides remain 100% full bright
+		consumer.addVertex(pose, x3, y3, z3).setColor(0xFFFFFFFF).setUv(1.0F, 0.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(0.0F, 1.0F, 0.0F);
+		consumer.addVertex(pose, x2, y2, z2).setColor(0xFFFFFFFF).setUv(1.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(0.0F, 1.0F, 0.0F);
+		consumer.addVertex(pose, x1, y1, z1).setColor(0xFFFFFFFF).setUv(0.0F, 1.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(0.0F, 1.0F, 0.0F);
+		consumer.addVertex(pose, x0, y0, z0).setColor(0xFFFFFFFF).setUv(0.0F, 0.0F).setOverlay(OverlayTexture.NO_OVERLAY).setLight(0x00F000F0).setNormal(0.0F, 1.0F, 0.0F);
 	}
 }

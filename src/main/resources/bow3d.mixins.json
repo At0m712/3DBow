@@ -9,6 +9,7 @@
 		"BowItemMixin",
 		"FirstPersonHandsAndItemsMixin",
 		"FirstPersonHandsAndItemsRendererMixin",
+		"ItemFeatureRendererMixin",
 		"ItemTintSourcesAccessor",
 		"PlayerModelMixin"
 	],
