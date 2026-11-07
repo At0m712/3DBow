@@ -34,6 +34,7 @@ public class ThreeDBowClient implements ClientModInitializer {
 		);
 
 		ClientTickEvents.END_CLIENT_TICK.register(BowSoundTracker::tick);
+		atom.bow3d.compat.PunchyCompat.init();
 
 		ThreeDBow.LOGGER.info("3D Bow client initialized with HasArrowProperty, ArrowTintSource, and BowSoundTracker!");
 	}
